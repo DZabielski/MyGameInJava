@@ -1,4 +1,5 @@
 import hero.HeroStats;
+import hero.Weapons;
 
 import java.util.Scanner;
 
@@ -9,7 +10,7 @@ public class Main {
 
         Scanner sc = new Scanner(System.in);
 
-        boolean hasMerchartDoneSomething = false, tavern = false, mageTower = false;
+        boolean hasMerchartDoneSomething = false, tavern = false, mageTower = false, isInHome = false, travel = false, hasHeardOfMine = false, hasADiary = false, hasSeenThePast = false;
         boolean isInTown = true;
 
         while (isInTown) {
@@ -19,7 +20,54 @@ public class Main {
             int userChoise = sc.nextInt();
             switch (userChoise) {
                 case 1:
-                    System.out.println("go out");
+                    travel = true;
+                    while (travel) {
+                        printHud();
+                        System.out.println("1. Go to the forest.");
+                        if (hasHeardOfMine) {
+                            System.out.println("2. Go to the Jimmy's mine");
+                        }
+                        if (hasADiary) {
+                            System.out.println("3. Go to the underground ruins");
+                        }
+                        if (hasSeenThePast) {
+                            System.out.println("4. Go to the old hut");
+                        }
+                        System.out.println("9. Go back to town.");
+                        System.out.println("Where to?: >");
+                        userChoise = sc.nextInt();
+                        switch (userChoise) {
+                            case 1:
+                                forestLocation();
+                                break;
+                            case 2:
+                                if (hasHeardOfMine) {
+                                    oldMineLocation();
+                                } else {
+                                    System.out.println("I do not know this direction.");
+                                }
+                                break;
+                            case 3:
+                                if (hasADiary) {
+                                    undergroundRuinsLocation();
+                                } else {
+                                    System.out.println("I do not know this direction.");
+                                }
+                                break;
+                            case 4:
+                                if (hasSeenThePast) {
+                                    theOldHutLocation();
+                                } else {
+                                    System.out.println("I do not know this direction.");
+                                }
+                            case 9:
+                                System.out.println("You are in town.");
+                                travel = false;
+                                break;
+                            default:
+                                System.out.println("I do not know this direction.");
+                        }
+                    }
                     break;
                 case 2:
                     tavern = true;
@@ -40,8 +88,13 @@ public class Main {
                                 break;
                             case 2:
                                 printHud();
-                                rentARoom();
-                                hasMerchartDoneSomething = true;
+                                if (HeroStats.gold >= 5) {
+                                    HeroStats.gold = HeroStats.gold - 5;
+                                    rest();
+                                    hasMerchartDoneSomething = true;
+                                } else {
+                                    System.out.println("Innkeeper: Sorry, but you do not have enough gold");
+                                }
                                 break;
                             case 3:
                                 printHud();
@@ -101,8 +154,6 @@ public class Main {
                                 System.out.println("Blacksmith do not offer any more actions");
                         }
                     }
-
-
                     break;
                 case 4:
                     if (HeroStats.hasKeyToHome) {
@@ -115,18 +166,40 @@ public class Main {
                     System.out.println("slums");
                     break;
                 case 6:
-                    if (HeroStats.hasKeyToHome) {
-                        System.out.println("Home");
-                    } else {
-                        System.out.println("I do not know this way");
-                    }
+                    isInHome = true;
+                    while (isInHome)
+                        if (HeroStats.hasKeyToHome) {
+                            printHud();
+                            System.out.println("Me: Home.. sweet home");
+                            System.out.println("1. Rest in bed");
+                            System.out.println("2. Change equipment");
+                            System.out.println("3. Go out");
+                            System.out.println("What are you going to do?: >");
+                            userChoise = sc.nextInt();
+                            switch (userChoise) {
+                                case 1:
+                                    rest();
+                                    break;
+                                case 2:
+                                    inventory();
+                                    break;
+                                case 3:
+                                    System.out.println("Time to go.");
+                                    isInHome = false;
+                                    break;
+                                default:
+                                    System.out.println("I'm not here for having fun");
+                            }
+                        } else {
+                            System.out.println("I do not know this way");
+                        }
                     break;
                 case 7:
                     if (HeroStats.hasAMap) {
                         mageTower = true;
                         while (mageTower) {
                             printHud();
-                            System.out.println("Kalazar the sky watcher: Ooo! I Knew you come. here.. here, have a sit.");
+                            System.out.println("Kalazar the sky watcher: Ooo! I Knew you come. Here.. here, have a sit.");
                             System.out.println("1. I want to see more (learn new spells");
                             System.out.println("2. Do you have some magic stuff for sell?");
                             System.out.println("3. Speak");
@@ -162,7 +235,6 @@ public class Main {
                             }
                         }
                         break;
-
                     } else {
                         System.out.println("I do not know this way");
                     }
@@ -180,6 +252,27 @@ public class Main {
 
     }
 
+    private static void theOldHutLocation() {
+
+    }
+
+    private static void undergroundRuinsLocation() {
+    }
+
+    private static void oldMineLocation() {
+    }
+
+    private static void forestLocation() {
+    }
+
+    private static void inventory() {
+    }
+
+    private static void rest() {
+        System.out.println("you fill rest. Your HP is back to the maximum capacity");
+        HeroStats.playerHP = HeroStats.playerMaxHP;
+    }
+
     private static void MageConversation() {
     }
 
@@ -190,11 +283,16 @@ public class Main {
     }
 
     private static void tavernStore() {
-        System.out.println("Placeholder for tavern Store");
-    }
+        printHud();
+        System.out.println("That's all ive got now. Sir");
+        System.out.println("1. 15 Gold - Black Bear (Add +10 to dmg for the next adventure");
+        System.out.println("2. 20 Gold - Red Sugar with extra sugar on round (Add +20 to the Max HP Points");
+        System.out.println("3. 14 Gold - Blue Fox (Add +10 to dexterity... As they say...");
+        System.out.println("4. I will pass.");
+        //int userChoise = sc.nextInt();
+        //switch (userChoise){
+        //}
 
-    private static void rentARoom() {
-        System.out.println("Placeholder for renting a room");
     }
 
     private static void innkeeperConversation() {
@@ -202,11 +300,24 @@ public class Main {
     }
 
     private static void upgrateArmor() {
-        System.out.println("Placeholder for armor upgrade");
+        if (HeroStats.gold >= HeroStats.armorUpgradeCost) {
+            System.out.println("Your armor has been upgraded!");
+            HeroStats.gold = HeroStats.gold - HeroStats.armorUpgradeCost;
+            HeroStats.armorUpgradeCost = HeroStats.armorUpgradeCost + 5;
+        } else {
+            System.out.println("Blacksmith: I don't work for free, get lost kid!");
+        }
     }
 
     private static void upgrateWeapon() {
-        System.out.println("Placeholder for weapon upgrade");
+        if (HeroStats.gold >= HeroStats.weaponUpgradeCost) {
+            System.out.println("Your weapon damage has been upgraded by 5!");
+            Object currentWeapon = Weapons.weaponName;
+            HeroStats.gold = HeroStats.gold - HeroStats.weaponUpgradeCost;
+            HeroStats.weaponUpgradeCost = HeroStats.weaponUpgradeCost + 5;
+        } else {
+            System.out.println("Blacksmith: I don't work for free, get lost kid!");
+        }
     }
 
     private static void blacksmithStore() {
