@@ -1,23 +1,14 @@
 package hero;
 
 public class Player {
+    //Player statistics
     private int playerMaxHP;
     private int playerHP;
-
-    public int getPlayerMaxMANA() {
-        return playerMaxMANA;
-    }
-
-    public void setPlayerMaxMANA(int playerMaxMANA) {
-        this.playerMaxMANA = playerMaxMANA;
-    }
-
     private int playerMaxMANA;
     private int playerMANA;
     private int strength;
     private int dexterity;
     private int gold;
-
     private int weaponUpgradeCost, armorUpgradeCost;
 
     //quest items
@@ -29,6 +20,13 @@ public class Player {
 
 
 
+    public int getPlayerMaxMANA() {
+        return playerMaxMANA;
+    }
+
+    public void setPlayerMaxMANA(int playerMaxMANA) {
+        this.playerMaxMANA = playerMaxMANA;
+    }
 
     public boolean isHasSeenThePast() {
         return hasSeenThePast;

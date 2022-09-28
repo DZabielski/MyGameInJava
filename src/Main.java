@@ -6,8 +6,8 @@ import java.util.Scanner;
 public class Main {
     static Player player = new Player();
     static Scanner sc = new Scanner(System.in);
-
-    static boolean hasMerchartDoneSomething = false, tavern = false, mageTower = false, isInHome = false, travel = false, innkeeperStore = false;
+    static int userChoice;
+    static boolean hasMerchartDoneSomething = false, tavern = false, mageTower = false, isInHome = false, travel = false, innkeeperStore = false, whileOldHutLocation = false, theLastConfrontation = false;
     static boolean isInTown = true;
 
     public static void main(String[] args) {
@@ -82,8 +82,8 @@ public class Main {
                         System.out.println("3. Speak");
                         System.out.println("4. Quit");
 
-                        userChoise = sc.nextInt();
-                        switch (userChoise) {
+                        userChoice = sc.nextInt();
+                        switch (userChoice) {
                             case 1:
                                 printHud();
                                 tavernStore();
@@ -255,7 +255,59 @@ public class Main {
     }
 
     private static void theOldHutLocation() {
+        whileOldHutLocation = true;
+        while (whileOldHutLocation) {
+            System.out.println("In this ruins you hear the sound of burning wood. There is definitely someone inside");
+            System.out.println("1. Search this old Hut");
+            System.out.println("2. Leave this place");
 
+            userChoice = sc.nextInt();
+            switch (userChoice) {
+
+                case 1:
+                    System.out.println("There is a man you meet in the slums. You are be able to see his face now. He is a few years older than you. Sit in silence. He is looking at you, and slowly move his hand to grab the axe.");
+                    System.out.println("");
+                    System.out.println("1. Throw knife at him");
+                    System.out.println("2. Runaway");
+
+                    System.out.println("What are you going to do?");
+
+                    theLastConfrontation = true;
+                    while (theLastConfrontation) {
+                        userChoice = sc.nextInt();
+                        switch (userChoice) {
+                            case 1:
+                                System.out.println("You throw the knife at him. this sharp edge cut through the chest, and gets right to the heart.");
+                                System.out.println("Your opponent look in your eyes. His seems to be happy... smiling. He drop on his knees. With his shaking hand he pulls out a piece of paper from behind his jacket");
+                                System.out.println("You stretched out your hand, but he drop on the ground and drop the letter to the snow.");
+                                System.out.println("On this piece of paper it is written: \"Sorry i could not be with you brother. Im sorry but that's all\"");
+                                theLastConfrontation = false;
+                                theEnd();
+                                break;
+                            case 2:
+                                System.out.println("");
+                                theLastConfrontation = false;
+                                theEnd();
+                                break;
+                            default:
+                                System.out.println("There is no other choice.");
+                        }
+                    }
+                    break;
+                case 2:
+                    break;
+                default:
+
+            }
+
+        }
+
+    }
+
+    private static void theEnd() {
+        System.out.println("You end the game. Congratulation!");
+        System.out.println("Game develop by Dawid Zabielski");
+        isInTown = false;
     }
 
     private static void undergroundRuinsLocation() {
