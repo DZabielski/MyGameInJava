@@ -7,7 +7,8 @@ public class Main {
     static Player player = new Player();
     static Scanner sc = new Scanner(System.in);
     static int userChoice;
-    static boolean hasMerchartDoneSomething = false, tavern = false, mageTower = false, isInHome = false, travel = false, innkeeperStore = false, whileOldHutLocation = false, theLastConfrontation = false;
+    static boolean hasMerchartDoneSomething = false, tavern = false, mageTower = false, isInHome = false, travel = false, innkeeperStore = false, whileOldHutLocation = false,
+            theLastConfrontation = false, inTheForest = false;
     static boolean isInTown = true;
 
     public static void main(String[] args) {
@@ -136,7 +137,7 @@ public class Main {
                                 break;
                             case 2:
                                 printHud();
-                                upgrateWeapon();
+                                upgradeWeapon();
                                 hasMerchartDoneSomething = true;
                                 break;
                             case 3:
@@ -317,6 +318,29 @@ public class Main {
     }
 
     private static void forestLocation() {
+        inTheForest = true;
+        while (inTheForest) {
+            System.out.println("Are you sure, you want to enter the forest?");
+            System.out.println("1. Yes, lets hunt");
+            System.out.println("2. No, i Go back to town");
+
+            userChoice = sc.nextInt();
+            switch (userChoice) {
+
+                case 1:
+                    Fight.fightState();
+                    break;
+
+                case 2:
+
+                    break;
+
+                default:
+                    System.out.println("There is no other choice");
+
+            }
+        }
+
     }
 
     private static void inventory() {
@@ -379,7 +403,7 @@ public class Main {
         return player;
     }
 
-    private static void upgrateWeapon() {
+    private static void upgradeWeapon() {
         if (player.getGold() >= player.getWeaponUpgradeCost()) {
             System.out.println("Your weapon damage has been upgraded by 5!");
             player.setGold(player.getGold() - player.getWeaponUpgradeCost());

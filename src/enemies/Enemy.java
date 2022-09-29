@@ -2,14 +2,13 @@ package enemies;
 
 public class Enemy {
 
+
     private String enemyName;
     private int enemyHP;
     private int enemyDMG;
     private int enemyGold;
     private boolean hasPoisonDMG;
     private boolean hasBleedDMG;
-
-
 
 
     public String getEnemyName() {
@@ -59,4 +58,45 @@ public class Enemy {
     public void setHasBleedDMG(boolean hasBleedDMG) {
         this.hasBleedDMG = hasBleedDMG;
     }
+
+
+    public void createEnemy(String chosenOpponent) {
+
+        switch (chosenOpponent) {
+            case "Deer":
+                setEnemyName(chosenOpponent);
+                setEnemyHP(getRandomNumber(20, 30));
+                setEnemyDMG(getRandomNumber(5, 15));
+                setEnemyGold(getRandomNumber(2, 4));
+                return;
+
+
+            case "Bear":
+                enemy.setEnemyName("Bear");
+                enemy.setEnemyHP(getRandomNumber(40, 60));
+                enemy.setEnemyDMG(getRandomNumber(10, 20));
+                enemy.setEnemyGold(getRandomNumber(5, 8));
+                break;
+
+            case "Bandit":
+                enemy.setEnemyName("Bandit");
+                enemy.setEnemyHP(getRandomNumber(40, 60));
+                enemy.setEnemyDMG(getRandomNumber(10, 20));
+                enemy.setEnemyGold(getRandomNumber(5, 8));
+                break;
+
+            case "Wolf":
+                enemy.setEnemyName("Wolf");
+                enemy.setEnemyHP(getRandomNumber(40, 60));
+                enemy.setEnemyDMG(getRandomNumber(10, 20));
+                enemy.setEnemyGold(getRandomNumber(5, 8));
+                break;
+
+            default:
+                System.out.println("poza listą");
+
+        }
+
+    }
+
 }

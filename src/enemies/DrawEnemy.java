@@ -2,27 +2,19 @@ package enemies;
 
 public class DrawEnemy {
 
+
     public static void forrestEnemy() {
+
+        Enemy enemy = new Enemy();
+        String chosenOpponent;
 
         String[] listOfForrestEnemy = {"Deer", "Bear", "Bandit", "Wolf"};
 
-        switch (listOfForrestEnemy[getRandomNumber(0, listOfForrestEnemy.length)]) {
-            case "Deer":
-                System.out.println("its a deer");
-                break;
-            case "Bear":
-                System.out.println("its a Bear");
-                break;
-            case "Bandit":
-                System.out.println("its a Bandit");
-                break;
-            case "Wolf":
-                System.out.println("its a Wolf");
-                break;
-            default:
-                System.out.println("poza listą");
+        chosenOpponent = listOfForrestEnemy[getRandomNumber(0, listOfForrestEnemy.length)];
 
-        }
+        Enemy.createEnemy(chosenOpponent);
+
+
     }
 
     public static void oldMineEnemy() {
