@@ -63,11 +63,11 @@ public class Enemy {
     public void createEnemy(String chosenOpponent) {
 
         switch (chosenOpponent) {
-            case "Deer":
-                setEnemyName(chosenOpponent);
-                setEnemyHP(getRandomNumber(20, 30));
-                setEnemyDMG(getRandomNumber(5, 15));
-                setEnemyGold(getRandomNumber(2, 4));
+            case Deer:
+                setEnemyName("Deer");
+                setEnemyHP(DrawEnemy.getRandomNumber(20, 30));
+                setEnemyDMG(DrawEnemy.getRandomNumber(5, 15));
+                setEnemyGold(DrawEnemy.getRandomNumber(2, 4));
                 return;
 
 
@@ -84,6 +84,9 @@ public class Enemy {
                 enemy.setEnemyDMG(getRandomNumber(10, 20));
                 enemy.setEnemyGold(getRandomNumber(5, 8));
                 break;
+                
+            case Goblin:
+
 
             case "Wolf":
                 enemy.setEnemyName("Wolf");

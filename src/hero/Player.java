@@ -17,6 +17,19 @@ public class Player {
     private boolean hasListenedAStory;
     private boolean hasInvitation;
     private boolean hasKeyToHome;
+    private boolean hasSeenThePast;
+    private boolean hasHeardOfMine;
+    private boolean hasMerchartDoneSomething;
+
+
+    public boolean HasMerchartDoneSomething() {
+        return hasMerchartDoneSomething;
+    }
+
+    public void setHasMerchartDoneSomething(boolean hasMerchartDoneSomething) {
+        this.hasMerchartDoneSomething = hasMerchartDoneSomething;
+    }
+
 
 
 
@@ -28,11 +41,11 @@ public class Player {
         this.playerMaxMANA = playerMaxMANA;
     }
 
-    public boolean isHasSeenThePast() {
-        return hasSeenThePast;
+    public  boolean isHeKnowThePast() {
+        return this.hasSeenThePast;
     }
 
-    public void setHasSeenThePast(boolean hasSeenThePast) {
+    public void setHeKnowThePast(boolean hasSeenThePast) {
         this.hasSeenThePast = hasSeenThePast;
     }
 
@@ -43,9 +56,6 @@ public class Player {
     public void setHasHeardOfMine(boolean hasHeardOfMine) {
         this.hasHeardOfMine = hasHeardOfMine;
     }
-
-    private boolean hasSeenThePast;
-    private boolean hasHeardOfMine;
 
     public int getPlayerMaxHP() {
         return playerMaxHP;
@@ -127,7 +137,7 @@ public class Player {
         this.hasAMap = hasAMap;
     }
 
-    public boolean isHasListenedAStory() {
+    public boolean HasListenedAStory() {
         return hasListenedAStory;
     }
 
@@ -152,7 +162,9 @@ public class Player {
     }
 
 
+
     public void creatingAHero() {
+
         //Stats
         setPlayerMaxHP(100);
         setPlayerHP(getPlayerMaxHP());
@@ -173,7 +185,17 @@ public class Player {
         setHasInvitation(false);
         setHasListenedAStory(false);
         setHasHeardOfMine(false);
-        setHasSeenThePast(false);
+        setHeKnowThePast(false);
+        setHasMerchartDoneSomething(false);
+
     }
+
+
+    public void printHud() {
+        System.out.println("----------------------------");
+        System.out.format(" HP: %d | MP: %d | Gold: %d %n", this.getPlayerHP(), this.getPlayerMANA(), this.getGold());
+        System.out.println("----------------------------");
+    }
+
 }
 

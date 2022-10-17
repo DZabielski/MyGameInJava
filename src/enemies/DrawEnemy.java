@@ -1,21 +1,44 @@
 package enemies;
 
+
+
+import locations_places_npc.Adventure;
+import java.util.Objects;
+import java.util.Random;
+
+
 public class DrawEnemy {
 
+    public static void chooseOpponent() {
+        boolean drawEnemy = true;
+        while (drawEnemy) {
 
-    public static void forrestEnemy() {
-
-        Enemy enemy = new Enemy();
-        String chosenOpponent;
-
-        String[] listOfForrestEnemy = {"Deer", "Bear", "Bandit", "Wolf"};
-
-        chosenOpponent = listOfForrestEnemy[getRandomNumber(0, listOfForrestEnemy.length)];
-
-        Enemy.createEnemy(chosenOpponent);
-
-
+            String chosenOpponent;
+            chosenOpponent = String.valueOf(generateRandomEnemy());
+            System.out.println(chosenOpponent);
+            System.out.println(Objects.equals(chosenOpponent, Adventure.typeOfEnemy));
+            if (Objects.equals(chosenOpponent, "Forrest")) {
+                System.out.println("im form forrest");
+            } else {
+                System.out.println("im not from forrest");
+            }
+            drawEnemy = false;
+            ;
+        }
     }
+
+    public static EnemyType generateRandomEnemy() {
+        EnemyType[] values = EnemyType.values();
+        int length = values.length;
+        int randIndex = new Random().nextInt(length);
+        return values[randIndex];
+    }
+
+    public static String getValueOfEnumEnemy(EnemyType et) {
+        System.out.println(et.env);
+        return et.env;
+    }
+
 
     public static void oldMineEnemy() {
 
