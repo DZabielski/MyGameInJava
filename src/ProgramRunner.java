@@ -13,16 +13,13 @@ public class ProgramRunner {
 
     public void run() {
 
-
         Player player = new Player();
         Scanner sc = new Scanner(System.in);
-
 
         boolean isInTown = true;
 
         //create a hero
         player.creatingAHero();
-
         chooseOpponent();
 
         while (isInTown) {
@@ -42,7 +39,6 @@ public class ProgramRunner {
                 case 3:
                     Blacksmith will = new Blacksmith();
                     will.smith(player);  //Will Will Smith smith? Yes, Will Smith will smith :D
-
                     break;
                 case 4:
                     NobilityDistrict enterND = new NobilityDistrict();

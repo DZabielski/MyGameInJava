@@ -172,7 +172,7 @@ public class Player {
         setPlayerMANA(getPlayerMaxMANA());
         setStrength(10);
         setDexterity(10);
-        setGold(0);
+        setGold(100);
 
         //Upgrades cost
         setArmorUpgradeCost(10);

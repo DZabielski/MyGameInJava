@@ -7,6 +7,8 @@ import java.util.Scanner;
 
 public class Tavern {
     Scanner sc = new Scanner(System.in);
+    int userChoice;
+
     public void tavern(Player player) {
 
         boolean tavern = true;
@@ -18,7 +20,7 @@ public class Tavern {
             System.out.println("3. Speak");
             System.out.println("4. Quit");
 
-            int userChoice = sc.nextInt();
+            userChoice = sc.nextInt();
             switch (userChoice) {
                 case 1:
                     player.printHud();
@@ -26,16 +28,35 @@ public class Tavern {
                     player.setHasMerchartDoneSomething(true);
                     break;
                 case 2:
-                    player.printHud();
-                    if (player.getGold() >= 5) {
-                        player.setGold(player.getGold() - 5);
-                        PlayerRest PR = new PlayerRest();
-                        PR.rest(player);
-                        player.setHasMerchartDoneSomething(true);
-                    } else {
-                        System.out.println("Innkeeper: Sorry, but you do not have enough gold");
+                    System.out.println("Renting a room costs: 5 gold, friend. Still interested?");
+                    System.out.println("1. Yes");
+                    System.out.println("2. No");
+
+                    boolean userRentingARoom = true;
+                    while (userRentingARoom) {
+                        userChoice = sc.nextInt();
+                        switch (userChoice) {
+                            case 1:
+                                player.printHud();
+                                if (player.getGold() >= 5) {
+                                    player.setGold(player.getGold() - 5);
+                                    PlayerRest PR = new PlayerRest();
+                                    PR.rest(player);
+                                    player.setHasMerchartDoneSomething(true);
+                                } else {
+                                    System.out.println("Innkeeper: Sorry, but you do not have enough gold");
+                                }
+
+                                userRentingARoom = false;
+                                break;
+                            case 2:
+                                System.out.println("that's OK");
+                                userRentingARoom = false;
+                            default:
+                                System.out.println("Sorry man, there is no way to rent a part of a room.");
+                                break;
+                        }
                     }
-                    break;
                 case 3:
                     player.printHud();
                     innkeeperConversation();
@@ -54,8 +75,8 @@ public class Tavern {
             }
         }
 
-
     }
+
     private void tavernStore(Player player) {
         player.printHud();
         System.out.println("That's all ive got now. Sir");
@@ -69,14 +90,17 @@ public class Tavern {
             int userChoice = sc.nextInt();
             switch (userChoice) {
                 case 1:
+                    System.out.println("beer1");
                     break;
                 case 2:
+                    System.out.println("beer2");
                     break;
                 case 3:
+                    System.out.println("beer3");
                     break;
                 case 4:
                     System.out.println("innkeeper John: Too bad my friend");
-
+                    innkeeperStore = false;
                     break;
                 default:
                     System.out.println("Innkeeper John: I do not have any other liquor, my friend");
@@ -84,7 +108,8 @@ public class Tavern {
         }
 
     }
-    private void innkeeperConversation(){
+
+    private void innkeeperConversation() {
 
 
     }
